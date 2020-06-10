@@ -27,7 +27,7 @@ class HomeController extends Controller
         $list = DB::table('provinces')
         ->orderBy('name_th','asc')
         ->get();
-        return view('province')->with('list',$list);
+        return view('home')->with('list',$list);
     }
 
     function fetch(Request $request){
@@ -35,13 +35,13 @@ class HomeController extends Controller
         $result = array();
         $query = DB::table('provinces')
         ->join('amphures','provinces.id','=','amphures.province_id')
-        ->select('amphures.name_th')
+        ->select('amphures.name_th','amphures.id')
         ->where('provinces.id',$id)
-        ->groupBy('amphures.name_th')
+        ->groupBy('amphures.name_th','amphures.id')
         ->get();
         $output='<option value="">เลือกอำเภอของท่าน</option>';
         foreach ($query as $row) {
-            $output.= '<option value="'.$row->name_th.'">'.$row->name_th.'</option>';
+            $output.= '<option value="'.$row->id.'">'.$row->name_th.'</option>';
         }
         echo $output;
     }

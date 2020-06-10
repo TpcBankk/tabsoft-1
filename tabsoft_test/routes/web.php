@@ -21,3 +21,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home/fetch', 'HomeController@fetch')->name('dropdown.fetch');
+
+Route::get('/fullcalendareventmaster','FullCalendarEventMasterController@index');
+Route::post('/fullcalendareventmaster/create','FullCalendarEventMasterController@create');
+Route::post('/fullcalendareventmaster/update','FullCalendarEventMasterController@update');
+Route::post('/fullcalendareventmaster/delete','FullCalendarEventMasterController@destroy');
